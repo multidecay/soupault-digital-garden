@@ -95,3 +95,14 @@ ul > li > span {
 .seed_meta tbody tr td {
     border-bottom: 1px dashed #859388;
 }
+
+section#recent-seed {
+    padding-bottom: 1em;
+}
+
+#recent-seed p {
+    border-bottom: 1px dashed #859388;
+    width: 100%;
+    display: flex;
+    margin: .5em auto;
+}

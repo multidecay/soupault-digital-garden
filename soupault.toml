@@ -23,6 +23,12 @@
   file = "plugins/populate-seeds-index.lua"
   # file = "plugins/generate-page.lua"
 
+[index.views.recent-seed]
+  index_selector = "section#recent-seed"
+  index_item_template = """
+    <p class="border-bottom: 1px dashed #859388;"><a href="{{url}}">{{title}}</a></p>
+  """
+
 [index.views.seed-index]
   index_selector = "section#seeds"
   index_item_template = """
@@ -34,7 +40,7 @@
   sort_descending = false
   sort_by = "title"
   sort_type = "lexicographic"
-  exclude_page = ["me.md","readme.md"] # put the page you not want shown, like it seem redudant.
+  exclude_page = ["me.md","now.md"] # already at navigation.
   extract_after_widgets = ["seed-meta"]
 
 [hooks.post-index]
@@ -69,6 +75,14 @@
   selector = "head"
   html = """ <link rel="stylesheet" href="/base.css" type="text/css">  """
 
+[widgets.footer]
+  widget = "include"
+  selector = "body"
+  file = "templates/footer.html"
+  action = "append_child"
+  exclude_page = ["me.md","now.md"] # exclude page to enable this widget
+
+# this for <seed-meta/> tag behaivor
 [widgets.seed-meta]
   widget = "seed-meta"
 
