@@ -1,0 +1,97 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+html {
+    font-size: 62.5%;
+    font-family: "Lora", serif;
+    font-weight: 500;
+}
+
+body {
+    font-size: 1.8rem;
+    line-height: 1.618;
+    max-width: 38em;
+    margin: auto;
+    color: #13221C;
+    background-color: #FAFBFA;
+    padding: 13px;
+}
+
+a {
+    color: #38664C;
+    text-decoration-line: none;
+}
+
+nav {
+    display: flex;
+    justify-content:space-between;
+    color: #13221C;
+}
+
+nav a {
+    text-decoration-line: none;
+    font-weight: 600;
+}
+
+nav a:visited {
+    color: #38664C;
+}
+
+nav section {
+    display: flex;
+}
+
+nav section a {
+    margin-left: .5em;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: #38664C;
+}
+
+pre {
+    border: 1px solid #13221C;
+    border-radius: .5em;
+    padding: .5em;
+    background-color: #D9DFD3;
+}
+
+p code {
+    border: 1px solid #13221C;
+    border-radius: .3em;
+    padding: 0 .3em;
+    background-color: #D9DFD3;
+}
+
+blockquote {
+    border-left-color: #859388;
+    border-left-style: solid;
+    border-left-width: 5px;
+    padding-left: 1em;
+}
+
+ul li {
+    color: #38664C;
+}
+
+ul > li > span {
+    color: #13221C;
+}
+
+.seed_meta {
+    display: table;
+    width: 100%;
+}
+
+.seed_meta tbody {
+    width: 100%;
+}
+
+.seed_meta tbody tr td:nth-child(2) {
+    text-align: right;
+    text-transform: lowercase;
+}
+
+.seed_meta tbody tr td {
+    border-bottom: 1px dashed #859388;
+}
