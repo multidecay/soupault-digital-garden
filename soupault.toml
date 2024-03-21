@@ -82,9 +82,14 @@
   action = "append_child"
   exclude_page = ["me.md","now.md"] # exclude page to enable this widget
 
-# this for <seed-meta/> tag behaivor
+# this for <seed-meta/> tag behaivor in indexing.
 [widgets.seed-meta]
   widget = "seed-meta"
+
+# transform the tags after indexing.
+[widgets.seed-meta-links]
+  selector = "seed-meta"
+  widget = "seed-meta-links"
 
 # Pages can be further processed with "widgets"
 # Takes the content of the first <h1> and inserts it into the <title>

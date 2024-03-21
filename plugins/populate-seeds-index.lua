@@ -7,7 +7,7 @@ paths = {}
 paths["field"] = Sys.join_path(Sys.dirname(page_file),"field")
 paths["type"] = Sys.join_path(Sys.dirname(page_file), "type")
 paths["audience"] = Sys.join_path(Sys.dirname(page_file), "audience")
-paths["tag"] = Sys.join_path(Sys.dirname(page_file), "tag")
+paths["tags"] = Sys.join_path(Sys.dirname(page_file), "tag")
 
 pages = {}
 
@@ -92,5 +92,5 @@ end
 
 generate_page_by_index_field("audience")
 generate_page_by_index_field("field")
-generate_page_by_index_field("tag")
+generate_page_by_index_field("tags")
 generate_page_by_index_field("type")
