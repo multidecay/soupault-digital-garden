@@ -11,18 +11,6 @@
   type = { selector = "span#seed-type", default = ""}  # what type of page you create
   title = { selector = ["h1"] }
 
-[index.views.main-index]
-  index_selector = "body" # just make this run, no edit to html
-  index_template = """
-    {% for e in entries %}
-        <h2><a href="{{e.url}}">{{e.title}}</a></h2>
-        <p>{{e.excerpt}}</p>
-        <a href="{{e.url}}">Read more</a>
-    {% endfor %}
-  """
-  file = "plugins/populate-seeds-index.lua"
-  # file = "plugins/generate-page.lua"
-
 [index.views.recent-seed]
   index_selector = "section#recent-seed"
   index_item_template = """
@@ -36,29 +24,45 @@
   """
 
 [index]
-  index = true
-  sort_descending = false
-  sort_by = "title"
-  sort_type = "lexicographic"
+  index=true
   exclude_page = ["me.md","now.md"] # already at navigation.
   extract_after_widgets = ["seed-meta"]
 
+[index.views.main-index]
+  index_selector = "html" # just make this run, no edit to html
+  index_template = """
+    <section class="seed-index-entries">
+    {% for e in entries %}
+        <section style="border-bottom: 1px dashed #859388; display:flex; justify-content: space-between;">
+          <a href="{{e.url}}" style="padding: .3em 0em; margin: .3em;">{{e.title}}</a>
+          <span style="display: flex;">
+          {% for t in e.type %}
+            <p style="color: #38664C; background: rgba(217, 223, 211, .6);border-radius: .4em;padding: .3em 1em; margin: .3em; border: none;">{{t}}</p>
+          {% endfor %}
+          </span>
+        </section>
+    {% endfor %}
+    </section>
+  """
+  file = "plugins/populate-seeds-index.lua"
+  # file = "plugins/generate-page.lua"
+
 [hooks.post-index]
   lua_source = '''
-     -- Split tags strings like "foo, bar" into lists
-     -- to make life easier for the Atom plugin and the indexer
-    function index_field_splitter(index_field) 
-      if Value.is_string(index_fields[index_field]) then
-        values = Regex.split(index_fields[index_field], ",")
-        Table.apply_to_values(String.trim, values)
-        index_fields[index_field] = values
+      -- Split tags strings like "foo, bar" into lists
+      -- to make life easier for the Atom plugin and the indexer
+      function index_field_splitter(index_field) 
+        if Value.is_string(index_fields[index_field]) then
+          values = Regex.split(index_fields[index_field], ",")
+          Table.apply_to_values(String.trim, values)
+          index_fields[index_field] = values
+        end
       end
-    end
-    index_field_splitter("field")
-    index_field_splitter("audience")
-    index_field_splitter("tags")
-    index_field_splitter("type")
-'''
+      index_field_splitter("field")
+      index_field_splitter("audience")
+      index_field_splitter("tags")
+      index_field_splitter("type")
+  '''
 
 # WIDGETS
 # Place to modify you HTML content with selector.
@@ -134,7 +138,7 @@
   verbose = true
 
   # Display detailed debug output?
-  debug = false
+  debug = true
 
   # Where input files (pages and assets) are stored.
   site_dir = "site"

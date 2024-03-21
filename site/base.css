@@ -26,6 +26,11 @@ a {
     text-decoration-line: none;
 }
 
+::selection {
+    background-color: rgba(217, 223, 211, .8); 
+    color: #38664C;
+}
+
 nav {
     display: flex;
     justify-content:space-between;
@@ -68,7 +73,7 @@ pre::-webkit-scrollbar {
 }
 
 p code {
-    border: 1px solid #13221C;
+    border: 1px solid #38664C;
     border-radius: .3em;
     padding: 0 .3em;
     background-color: rgba(217, 223, 211, .6);;
@@ -109,11 +114,19 @@ ul > li > span {
     border-bottom: 1px dashed #859388;
 }
 
-section#recent-seed {
+.seed_meta a {
+    color: #38664C;
+    text-decoration-line: none;
+    padding: 0 .5em;
+    background: rgba(217, 223, 211, .6);
+    border-radius: .4em;
+}
+
+section#recent-seed, section.seed-index-entries {
     padding-bottom: 1em;
 }
 
-#recent-seed p {
+#recent-seed p, section.seed-index-entries p {
     border-bottom: 1px dashed #859388;
     width: 100%;
     display: flex;

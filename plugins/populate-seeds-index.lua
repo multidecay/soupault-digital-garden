@@ -61,11 +61,29 @@ end
 -- this function to inflate all matched url with index_template
 function build_index_field_page(entries, index_field, value)
     local match_entries = find_entries_with_index_field(entries,index_field,value)
-    local template = "<h1> Seed with {{index_field}} \"{{value}}\"" .. config["index_template"]
+    local template = "<h1> Seed with {{index_field}} \"{{value}}\" </h1> " .. config["index_template"]
     local env = {}
     env["index_field"] = index_field
     env["value"] = value
     env["entries"] = match_entries
+    -- remember to use for-loop to consume entries
+    seeds = String.render_template(template,env)
+    return seeds
+end
+
+function build_index_field_catalog_page(entries, index_field)
+    local all_index_field = aggregate_value_of_index_field(index_field)
+    local template_index = [[
+        <section class="seed-index-entries">
+        {% for v in values %}
+            <p class="border-bottom: 1px dashed #859388;"><a href="/{{index_field}}/{{v}}">{{v}}</a></p>
+        {% endfor %}
+        </section>
+    ]]
+    local template = "<h1> {{index_field}}'s catalog </h1> " .. template_index
+    local env = {}
+    env["index_field"] = index_field
+    env["values"] = all_index_field
     -- remember to use for-loop to consume entries
     seeds = String.render_template(template,env)
     return seeds
@@ -90,7 +108,20 @@ function generate_page_by_index_field(index_field)
     end
 end
 
+function generate_catalog_by_index_field(index_field)
+    local field_catalog = {}
+    field_catalog["page_file"] = Sys.join_path(paths[index_field],"index.html")
+    field_catalog["page_content"] = build_index_field_catalog_page(site_index,index_field)
+    pages[size(pages) + 1] = field_catalog
+end
+
 generate_page_by_index_field("audience")
 generate_page_by_index_field("field")
 generate_page_by_index_field("tags")
 generate_page_by_index_field("type")
+
+generate_catalog_by_index_field("audience")
+generate_catalog_by_index_field("field")
+generate_catalog_by_index_field("type")
+
+print(site_index)

@@ -1,9 +1,9 @@
+Plugin.require_version("1.8.0")
 
 function get_link_data(element, attr_name)
-    link_data = HTML.get_attribute(element,attr_name)
-
+    local link_data = HTML.get_attribute(element,attr_name)
     if not link_data then
-        link_data = format("%s with attr %s not exists", element, attr_name)
+        link_data = HTML.strip_tags(element)
     end
 
     return link_data

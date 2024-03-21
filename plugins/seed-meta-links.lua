@@ -19,7 +19,7 @@ if tags_tag then
     while i <= size(tags) do
         tags_links = tags_links .. format("<a href=\"/tag/%s\">%s</a>",tags[i],tags[i]) 
         if not(i == size(tags)) then
-            tags_links = tags_links .. ","
+            tags_links = tags_links .. "  &ensp; "
         end
         i = i + 1
     end

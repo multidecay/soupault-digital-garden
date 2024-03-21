@@ -4,8 +4,9 @@ Status: WIP.
 
 Template for making digital garden using soupault. 
 
-Seed in this page refer as page in blog or wikis, since
-digital garden quite intersection of both.
+Digital garden quite intersection of blog and wikis/notebooks/zettelkasten, if you like scattered notes then this appreach may fit with you. 
+
+More about digital garden you can [read here](https://maggieappleton.com/garden-history).
 
 ## Concept
 
