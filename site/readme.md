@@ -22,7 +22,10 @@ into file in templates.
 
 ## How to run
 
-Run command (written in monospace) below in terminal in same working directory with these template:
+Clone or download template code from [multidecay/soupault-digital-garden](https://github.com/multidecay/soupault-digital-garden), then extract it if you download as zip.
+
+
+Run command (written in `monospace`) below in terminal in same working directory with the template:
 
 - Build : `make build`
 
@@ -36,7 +39,6 @@ Little tips if your first with soupault, it works as selector and mutator
 <seed-meta
     field="soupault"
     type="documentation"
-    date="15 Mar 2024"
     tags="soupault,digital garden"
     audience="you"
  />

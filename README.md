@@ -1,6 +1,6 @@
 # Soupault Digital Garden
 
-Status: WIP.
+Status: LGTM, but not production ready.
 
 Template for making digital garden using soupault. 
 
