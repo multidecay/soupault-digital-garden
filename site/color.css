@@ -1,0 +1,83 @@
+
+/*
+
+    Theming place, replace with your color by follow this
+    guideline.
+
+    Background: #FAFBFA;
+    Section Background: rgba(217, 223, 211,.6)/#D9DFD3;
+    Darker section background/bordor: #859388;
+    Accent color: #38664C;
+    Text color: #13221C;
+*/
+body {
+    color: #13221C;
+    background-color: #FAFBFA;
+}
+
+a {
+    color: #38664C;
+}
+
+::selection {
+    background-color: rgba(217, 223, 211, .8); 
+    color: #38664C;
+}
+
+nav {
+    color: #13221C;
+}
+
+nav a:visited {
+    color: #38664C;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: #38664C;
+}
+
+pre {
+    border: 1px solid #13221C;
+    background-color: #D9DFD3;
+}
+
+
+p code {
+    border: 1px solid #38664C;
+    background-color: rgba(217, 223, 211, .6);;
+}
+
+blockquote {
+    border-left-color: #859388;
+    background-color: rgba(217, 223, 211, .6);
+}
+
+ul li {
+    color: #38664C;
+}
+
+ul > li > span {
+    color: #13221C;
+}
+
+.seed_meta tbody tr td {
+    border-bottom: 1px dashed #859388;
+}
+
+.seed_meta a {
+    color: #38664C;
+    background: rgba(217, 223, 211, .6);
+}
+
+#recent-seed p, .seed-index-entries p, .catalog-index-entries p {
+    border-bottom: 1px dashed #859388;
+}
+
+.seed-index-entries_item {
+    border-bottom: 1px dashed #859388; 
+}
+
+.seed-index-entries_item span p {
+    color: #38664C; 
+    background: rgba(217, 223, 211, .6);
+}

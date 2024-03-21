@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('/color.css');
 
 html {
     font-size: 62.5%;
@@ -12,8 +13,6 @@ body {
     line-height: 1.618;
     max-width: 38em;
     margin: auto;
-    color: #13221C;
-    background-color: #FAFBFA;
     padding: 13px;
 }
 
@@ -22,19 +21,12 @@ img {
 }
 
 a {
-    color: #38664C;
     text-decoration-line: none;
-}
-
-::selection {
-    background-color: rgba(217, 223, 211, .8); 
-    color: #38664C;
 }
 
 nav {
     display: flex;
     justify-content:space-between;
-    color: #13221C;
 }
 
 nav a {
@@ -42,9 +34,6 @@ nav a {
     font-weight: 600;
 }
 
-nav a:visited {
-    color: #38664C;
-}
 
 nav section {
     display: flex;
@@ -54,15 +43,10 @@ nav section a {
     margin-left: .5em;
 }
 
-h1,h2,h3,h4,h5,h6 {
-    color: #38664C;
-}
 
 pre {
-    border: 1px solid #13221C;
     border-radius: .5em;
     padding: .5em;
-    background-color: #D9DFD3;
     overflow-x: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -73,27 +57,15 @@ pre::-webkit-scrollbar {
 }
 
 p code {
-    border: 1px solid #38664C;
     border-radius: .3em;
     padding: 0 .3em;
-    background-color: rgba(217, 223, 211, .6);;
 }
 
 blockquote {
-    border-left-color: #859388;
     border-left-style: solid;
     border-left-width: 5px;
     padding-left: 1em;
     padding-top: .2em;
-    background-color: rgba(217, 223, 211, .6);
-}
-
-ul li {
-    color: #38664C;
-}
-
-ul > li > span {
-    color: #13221C;
 }
 
 .seed_meta {
@@ -110,25 +82,35 @@ ul > li > span {
     text-transform: lowercase;
 }
 
-.seed_meta tbody tr td {
-    border-bottom: 1px dashed #859388;
-}
-
 .seed_meta a {
-    color: #38664C;
     text-decoration-line: none;
     padding: 0 .5em;
-    background: rgba(217, 223, 211, .6);
     border-radius: .4em;
 }
 
-section#recent-seed, section.seed-index-entries {
+section#recent-seed, .seed-index-entries, .catalog-index-entries {
     padding-bottom: 1em;
 }
 
-#recent-seed p, section.seed-index-entries p {
-    border-bottom: 1px dashed #859388;
+#recent-seed p, .seed-index-entries p, .catalog-index-entries p {
     width: 100%;
     display: flex;
     margin: .5em auto;
+}
+
+.seed-index-entries_item {
+    display:flex; 
+    justify-content: space-between;
+}
+
+.seed-index-entries_item a {
+    padding: .3em 0em; 
+    margin: .3em;
+}
+
+.seed-index-entries_item span p {
+    border-radius: .4em;
+    padding: .3em 1em; 
+    margin: .3em; 
+    border: none;
 }

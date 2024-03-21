@@ -33,11 +33,11 @@
   index_template = """
     <section class="seed-index-entries">
     {% for e in entries %}
-        <section style="border-bottom: 1px dashed #859388; display:flex; justify-content: space-between;">
-          <a href="{{e.url}}" style="padding: .3em 0em; margin: .3em;">{{e.title}}</a>
+        <section class="seed-index-entries_item">
+          <a href="{{e.url}}" style="">{{e.title}}</a>
           <span style="display: flex;">
           {% for t in e.type %}
-            <p style="color: #38664C; background: rgba(217, 223, 211, .6);border-radius: .4em;padding: .3em 1em; margin: .3em; border: none;">{{t}}</p>
+            <p>{{t}}</p>
           {% endfor %}
           </span>
         </section>

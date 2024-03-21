@@ -74,9 +74,9 @@ end
 function build_index_field_catalog_page(entries, index_field)
     local all_index_field = aggregate_value_of_index_field(index_field)
     local template_index = [[
-        <section class="seed-index-entries">
+        <section class="catalog-index-entries">
         {% for v in values %}
-            <p class="border-bottom: 1px dashed #859388;"><a href="/{{index_field}}/{{v}}">{{v}}</a></p>
+            <p><a href="/{{index_field}}/{{v}}">{{v}}</a></p>
         {% endfor %}
         </section>
     ]]
