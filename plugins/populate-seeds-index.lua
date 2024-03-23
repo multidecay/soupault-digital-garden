@@ -61,10 +61,21 @@ end
 -- this function to inflate all matched url with index_template
 function build_index_field_page(entries, index_field, value)
     local match_entries = find_entries_with_index_field(entries,index_field,value)
-    local template = "<h1> Seed with {{index_field}} \"{{value}}\" </h1> " .. config["index_template"]
+    local index_entries = "<section id=\"seeds-index\">" .. config["index_template"] .. "</section>"
+    local template = "<h1> Konten {{index_field}} = \"{{value}}\" </h1> " .. index_entries
     local env = {}
     env["index_field"] = index_field
     env["value"] = value
+    env["entries"] = match_entries
+    -- remember to use for-loop to consume entries
+    seeds = String.render_template(template,env)
+    return seeds
+end
+
+function fragments_index_field_page(entries,index_field,value)
+    local match_entries = find_entries_with_index_field(entries,index_field,value)
+    local template = config["index_template"]
+    local env = {}
     env["entries"] = match_entries
     -- remember to use for-loop to consume entries
     seeds = String.render_template(template,env)
@@ -80,7 +91,7 @@ function build_index_field_catalog_page(entries, index_field)
         {% endfor %}
         </section>
     ]]
-    local template = "<h1> {{index_field}}'s catalog </h1> " .. template_index
+    local template = "<h1> Katalog indeks {{index_field}} </h1> " .. template_index
     local env = {}
     env["index_field"] = index_field
     env["values"] = all_index_field
@@ -90,6 +101,7 @@ function build_index_field_catalog_page(entries, index_field)
 end
 
 function generate_page_by_index_field(index_field)
+    print(site_index)
     local i = 1
     local all_index_field = aggregate_value_of_index_field(index_field)
     local index_field_count = size(all_index_field)
@@ -97,11 +109,35 @@ function generate_page_by_index_field(index_field)
         entry = all_index_field[i]
         if entry then
             Log.info(format("Generating a page for %s \"%s\"",index_field,entry))
-            field_page = {}
-            field_page["page_file"] = Sys.join_path(paths[index_field],format("%s.html",entry))
-            field_page["page_content"] = build_index_field_page(site_index,index_field,entry)
+            -- TODO: CHECK IS PAGE INDEX ALREADY EXIST
 
-            pages[size(pages) + 1] = field_page
+            local path = ""
+            if Sys.is_windows() then
+                path = format("%s\\%s.html",paths[index_field],entry)
+            else
+                path = format("%s/%s.html",paths[index_field],entry)
+            end
+
+            if Sys.file_exists(path) then
+                -- not exist: run this stuff
+                local current_index_html = HTML.parse(Sys.read_file(path))
+                local target = HTML.select_one(current_index_html, "section#seed-index")
+                local fragment = HTML.parse(fragments_index_field_page(site_index,index_field,entry))
+                HTML.append_child(target,fragment)
+                print(path)
+                print(HTML.to_string(current_index_html))
+                Sys.write_file(path,HTML.to_string(current_index_html))
+            else
+                -- exist: read the html, parse, selctor the index entries, append new, entry, rewrite
+                -- TODO: do the shit
+                field_page = {}
+                field_page["page_file"] = Sys.join_path(paths[index_field],format("%s.html",entry))
+                field_page["page_content"] = build_index_field_page(site_index,index_field,entry)
+                pages[size(pages) + 1] = field_page
+            end
+
+
+
         end
 
         i = i + 1
@@ -123,5 +159,3 @@ generate_page_by_index_field("type")
 generate_catalog_by_index_field("audience")
 generate_catalog_by_index_field("field")
 generate_catalog_by_index_field("type")
-
-print(site_index)

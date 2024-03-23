@@ -12,12 +12,14 @@
   title = { selector = ["h1"] }
 
 [index.views.recent-seed]
+  path_regex = "/*"
   index_selector = "section#recent-seed"
   index_item_template = """
     <p class="border-bottom: 1px dashed #859388;"><a href="{{url}}">{{title}}</a></p>
   """
 
 [index.views.seed-index]
+  path_regex = "/*"
   index_selector = "section#seeds"
   index_item_template = """
     <h2><a href="{{url}}">{{title}}</a></h2>
@@ -29,6 +31,7 @@
   extract_after_widgets = ["seed-meta"]
 
 [index.views.main-index]
+  path_regex = "/*"
   index_selector = "html" # just make this run, no edit to html
   index_template = """
     <section class="seed-index-entries">
@@ -77,7 +80,7 @@
 [widgets.css-base]
   widget = "insert_html"
   selector = "head"
-  html = """ <link rel="stylesheet" href="/base.css" type="text/css">  """
+  html = """ <link rel="stylesheet" href="/css/base.css" type="text/css">  """
 
 [widgets.footer]
   widget = "include"
